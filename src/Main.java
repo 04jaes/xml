@@ -225,28 +225,8 @@ public class Main {
         }
     }
 
-    // Método para eliminar un entrenamiento por ID
-    public void eliminar(int id) {
-        try {
-            File file = new File(filePath);
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(file);
 
-            NodeList nodeList = doc.getElementsByTagName("entrenamiento");
 
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node = nodeList.item(i);
-
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element elemento = (Element) node;
-
-                    if (Integer.parseInt(elemento.getAttribute("id")) == id) {
-                        elemento.getParentNode().removeChild(elemento);
-                        break;
-                    }
-                }
-            }
 
 // Guardar los cambios en el archivo XML
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

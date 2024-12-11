@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<entrenamientos>
+<videojuegos>
 
-    <entrenamiento id="2">
+    <videojuego id="2">
         <nombre>HIIT Avanzado</nombre>
         <duracion>40</duracion>
         <nivel>Duro</nivel>
-    </entrenamiento>
+    </videojuego>
 
-    <entrenamiento id="3">
+    <videojuego id="3">
         <nombre>Yoga</nombre>
         <duracion>45</duracion>
         <nivel>Fácil</nivel>
-    </entrenamiento>
+    </videojuego>
 
-    <entrenamiento id="4">
+    <videojuego id="4">
         <nombre>Pilates</nombre>
         <duracion>50</duracion>
         <nivel>Intermedio</nivel>
-    </entrenamiento>
+    </videojuego>
 
-    <entrenamiento id="4">
+    <videojuego id="4">
         <nombre>Pilates</nombre>
         <duracion>50</duracion>
         <nivel>Intermedio</nivel>
-    </entrenamiento>
+    </videojuego>
 
-</entrenamientos>
+</videojuegos>
