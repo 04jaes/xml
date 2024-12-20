@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<videojuegos>
+            
+
+    
+    
+    <videojuego id="3">
+                        
+        
+        <nombre>sekiro</nombre>
+                        
+        
+        <empresa>fromsoftware</empresa>
+                        
+        
+        <precio>30</precio>
+                    
+    
+    </videojuego>
+            
+    
+    <videojuego id="4">
+                        
+        
+        <nombre>brotato</nombre>
+                        
+        
+        <empresa>blolbfish</empresa>
+                        
+        
+        <precio>5</precio>
+                    
+    
+    </videojuego>
+            
+    
+    <videojuego id="5">
+                        
+        
+        <nombre>vampire survivors</nombre>
+                        
+        
+        <empresa>Poncle Limited</empresa>
+                        
+        
+        <precio>5</precio>
+                    
+    
+    </videojuego>
+            
+    
+    <videojuego id="6">
+                        
+        
+        <nombre>astrobot</nombre>
+                        
+        
+        <empresa>team asobi</empresa>
+                        
+        
+        <precio>60.0</precio>
+                    
+    
+    </videojuego>
+            
+
+
+    <videojuego id="2">
+        <nombre>league of legends</nombre>
+        <empresa>riot</empresa>
+        <precio>0.0</precio>
+    </videojuego>
+</videojuegos>

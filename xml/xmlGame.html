@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* Estilo general de la página */
+        body {
+            background-color: rgb(188, 194, 194);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Estilo de la tabla */
+        table {
+            width: 80%;
+            margin: 20px;
+            border-collapse: collapse; /* Quitar espacios entre celdas */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+            border-radius: 10px;
+            overflow: hidden; /* Para que los bordes redondeados funcionen */
+        }
+
+        /* Estilo de las celdas de la tabla */
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50; /* Fondo verde */
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Fondo alterno para filas */
+        }
+
+        tr:hover {
+            background-color: #ddd; /* Color al pasar el mouse por encima */
+        }
+
+        /* Estilo de los botones */
+        span {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #007bff;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        span:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Centrar el formulario en el medio de la página */
+        #contenido {
+            width: 80%;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+<form id="formulario">
+    <div id="contenido"></div>
+</form>
+
+<script type="text/javascript" language="javascript">
+    var http_request = false;
+    var contenido = document.getElementById("contenido");
+
+    function makeRequest(url) {
+        http_request = false;
+
+        if (window.XMLHttpRequest) { // Mozilla, Safari,...
+            http_request = new XMLHttpRequest();
+            if (http_request.overrideMimeType) {
+                http_request.overrideMimeType('text/xml');
+                console.info("entra");
+            }
+        } else if (window.ActiveXObject) { // IE
+            try {
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {}
+            }
+        }
+
+        if (!http_request) {
+            alert('Falla :( No es posible crear una instancia XMLHTTP');
+            return false;
+        }
+        http_request.onreadystatechange = alertContents;
+        http_request.open('GET', url, true);
+        http_request.send();
+    }
+
+    function alertContents() {
+        if (http_request.readyState == 4) {
+            if (http_request.status == 200) {
+                muestraXML();
+            } else {
+                alert(http_request.status);
+                alert('Hubo problemas con la petición.');
+            }
+        }
+    }
+
+    function muestraXML() {
+        var tablaVideojuegos, datos, nombres, generos, precios;
+
+        tablaVideojuegos = "<table><tr><th>NOMBRE</th><th>compañia</th><th>PRECIO</th></tr>";
+        datos = http_request.responseXML.documentElement.getElementsByTagName("videojuego");
+
+        for (let i = 0; i < datos.length; i++) {
+            tablaVideojuegos = tablaVideojuegos + "<tr>";
+
+            // Nombre
+            nombres = datos[i].getElementsByTagName("nombre");
+            try {
+                tablaVideojuegos = tablaVideojuegos + "<td>" + nombres[0].firstChild.nodeValue + "</td>";
+            } catch (er) {
+                tablaVideojuegos = tablaVideojuegos + "<td>Sin nombre</td>";
+            }
+
+            // Genero
+            generos = datos[i].getElementsByTagName("empresa");
+            try {
+                tablaVideojuegos = tablaVideojuegos + "<td>" + generos[0].firstChild.nodeValue + "</td>";
+            } catch (er) {
+                tablaVideojuegos = tablaVideojuegos + "<td>Sin género</td>";
+            }
+
+            // Precio
+            precios = datos[i].getElementsByTagName("precio");
+            try {
+                tablaVideojuegos = tablaVideojuegos + "<td>" + precios[0].firstChild.nodeValue + "</td>";
+            } catch (er) {
+                tablaVideojuegos = tablaVideojuegos + "<td>Sin precio</td>";
+            }
+
+            tablaVideojuegos = tablaVideojuegos + "</tr>";
+        }
+        tablaVideojuegos = tablaVideojuegos + "</table>";
+        document.getElementById('contenido').innerHTML = tablaVideojuegos;
+    }
+
+</script>
+<span onclick="makeRequest('http://localhost/xml/videojuegos.xml')">
+            Mostrar tabla
+    </span>
+</body>
+
+</html>
